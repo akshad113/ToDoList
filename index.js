@@ -4,12 +4,15 @@ const app = express();
 const port = 3000;
 const home = require("./routes");
 
-// Use of Express Router
+// Use of Express Router 
 app.use('/',home);
 
 //set up the view engine
 app.set('view engine','ejs');
-app.set('views','./views');
+app.set('views','./views'); 
+
+// to use static file, present in asset
+app.use(express.static('assets'));
 
 app.listen(port,function(err){
     if(err) console.log(`Error while starting server:${err}`);

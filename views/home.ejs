@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
     <title><%= title %></title>
-    
+    <!-- Added fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <!-- file link  -->
-    <link rel="stylesheet" href="css/home.css" />
-    
+    <link rel="stylesheet" href="/css/home.css" />
 
     <!-- google font  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +24,7 @@
         <h1 class="main__h1"><%= title %></h1>
 
         <!-- Making Form For Input -->
-        <form action="/createTodo" method="POST">
+        <form action="/action/createTodo" method="POST">
           <div class="header">
 
             <!-- description input for to do  -->
@@ -45,7 +45,7 @@
                 <!-- Drop down list for work occpation -->
                 <div class="header__category" >
                 <p>CATEGORY</p>
-                <select name="Select" id="">
+                <select name="category" id="">
                     <option value="School">Choose the Category</option>
                     <option value="School">School</option>
                     <option value="Work">Work</option>
@@ -63,7 +63,7 @@
                     <input
                         type="date"
                         id="start"
-                        name="trip-start"
+                        name="date"
                         value="YYYY-MM-DD"
                         min="2018-01-01"
                         max="2100-12-31"
@@ -72,20 +72,31 @@
                
             </div> 
             <div class="header__btn">
-                <button type="submit">ADD</button>
-                <button type="submit">DELETE</button>
+                <!-- button to add a new task and sumbit form -->
+                <button id="add-button" type="submit"> 
+                  <i class="fas fa-plus"></i>
+                  <span>Add Task</span> 
+              </button>
+              
+                 <!-- button to delete all the selected tasks -->
+                <button id="delete-button" type="submit" form="tasks-list-form">
+                    <i class="fas fa-trash-alt"></i>
+                    <span>Delete Tasks</span>
+                </button>
             </div> 
         </div>
         </form>
       </div>
 
       <div class="main__content">
+        <form action="/action/delete-tasks" method="POST" id="tasks-list-form">
           <% for (i of todo_list) { %>
             <p >
-              <input type="checkbox"><%= i.description %><span class="main__date">3/04/2020</span></input>
-              <button><%= i.title %> </button>
+              <input type="checkbox" value="<%= i.id %>" name="id"><%= i.description %><span class="main__date"><i class="fas fa-calendar-alt" style="margin-right: 1rem;"></i><%= i.date %> </span></input>
+              <button type="button"><%= i.category %> </button>
             </p>
           <% } %>
+        </form>
       </div>
     </div>
   </body>
