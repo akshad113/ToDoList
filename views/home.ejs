@@ -1,13 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %> </title>
-</head>
-<body>
-    <h1><%= title %></h1>
-    <p>To Do List</p>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <title><%= title %></title>
+    
+    <!-- file link  -->
+    <link rel="stylesheet" href="css/home.css" />
+    
+
+    <!-- google font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="main">
+
+        <!-- Heading Title  -->
+        <div class="main__header">
+        <h1 class="main__h1"><%= title %></h1>
+
+        <!-- Making Form For Input -->
+        <form action="/createTodo" method="POST">
+          <div class="header">
+
+            <!-- description input for to do  -->
+            <div class="header__description">
+              <p>DESCRIPTION</p>
+              <input
+                
+                type="text"
+                placeholder="What do you Need to do?"
+                name="description"
+                required
+              />
+            </div>
+
+            <!-- container - Category & calander  -->
+            <div class="header__container">
+
+                <!-- Drop down list for work occpation -->
+                <div class="header__category" >
+                <p>CATEGORY</p>
+                <select name="Select" id="">
+                    <option value="School">Choose the Category</option>
+                    <option value="School">School</option>
+                    <option value="Work">Work</option>
+                    <option value="Home">Office</option>
+                    <option value="personal"> Personal</option>
+                    <option value="cleaning"> Cleaning </option>
+                    <option value="other">Other</option>
+                </select>
+                </div>
+
+                <!-- calander for selecting dd/mm/yy  -->
+                <div class="header__calander">
+                    <p>DUE DATE</p>
+
+                    <input
+                        type="date"
+                        id="start"
+                        name="trip-start"
+                        value="YYYY-MM-DD"
+                        min="2018-01-01"
+                        max="2100-12-31"
+                    />
+                </div>
+               
+            </div> 
+            <div class="header__btn">
+                <button type="submit">ADD</button>
+                <button type="submit">DELETE</button>
+            </div> 
+        </div>
+        </form>
+      </div>
+
+      <div class="main__content">
+          <% for (i of todo_list) { %>
+            <p >
+              <input type="checkbox"><%= i.description %><span class="main__date">3/04/2020</span></input>
+              <button><%= i.title %> </button>
+            </p>
+          <% } %>
+      </div>
+    </div>
+  </body>
 </html>
